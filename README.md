@@ -14,4 +14,11 @@ virtualenv -p $(which python3) venv
 ```
 source venv/bin/activate
 ```
-## Spare line
+## Coverage
+
+```
+coverage run --source='news' manage.py test
+coverage html
+# or
+coverage report
+```
