@@ -1,0 +1,25 @@
+{
+  "name": "DjangoNews",
+  "version": "1.0.0",
+  "description": "## Install virtualenv",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shitikovkirill/DjangoNews.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shitikovkirill/DjangoNews/issues"
+  },
+  "homepage": "https://github.com/shitikovkirill/DjangoNews#readme",
+  "devDependencies": {
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.1"
+  },
+  "scripts": {
+    "dev": "webpack --mode development ./project/frontend/src/index.js --output ./project/frontend/static/frontend/main.js",
+    "build": "webpack --mode production ./project/frontend/src/index.js --output ./project/frontend/static/frontend/main.js"
+  }
+}
