@@ -29,6 +29,7 @@
     "webpack-cli": "^3.1.1"
   },
   "scripts": {
+    "fixture": "python ./project/manage.py loaddata news",
     "flush": "python ./project/manage.py flush --no-input",
     "e2e": "cypress open --project ./project/frontend/",
     "dev": "webpack --mode development ./project/frontend/src/index.js --output ./project/frontend/static/frontend/main.js",
