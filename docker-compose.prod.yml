@@ -1,0 +1,18 @@
+version: "3"
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
+    container_name: djando_news_nginx
+    ports:
+    - "80:80"
+    depends_on:
+    - "web"
+
+  web:
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn news_project.wsgi -b 0.0.0.0:8000"
+    depends_on:
+      - "db"
+    environment:
+      ALLOWED_HOSTS: "*"

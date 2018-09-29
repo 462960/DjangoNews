@@ -104,3 +104,4 @@ venv.bak/
 .mypy_cache/
 node_modules/
 project/frontend/static/frontend
+project/static
