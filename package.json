@@ -29,8 +29,14 @@
     "webpack-cli": "^3.1.1"
   },
   "scripts": {
-    "fixture": "python ./project/manage.py loaddata news",
-    "flush": "python ./project/manage.py flush --no-input",
+    "cov": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml exec web coverage run manage.py test",
+    "cov_rep": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml exec web coverage report",
+
+    "lint": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml exec web pylint authorization frontend news news_project",
+
+    "fixture": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml exec web python ./project/manage.py loaddata news",
+    "flush": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml exec web python ./project/manage.py flush --no-input",
+
     "e2e": "cypress open --project ./project/frontend/",
     "dev": "webpack --mode development ./project/frontend/src/index.js --output ./project/frontend/static/frontend/main.js",
     "build": "webpack --mode production ./project/frontend/src/index.js --output ./project/frontend/static/frontend/main.js"
