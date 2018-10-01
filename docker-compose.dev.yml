@@ -18,3 +18,23 @@ services:
   celery-beat:
     volumes:
       - "./project:/app"
+
+  php-redis-admin:
+    image: faktiva/php-redis-admin
+    container_name: pra
+    environment:
+      - PHPREDMIN_DATABASE_REDIS_0_HOST=redis
+    ports:
+      - "8080:80"
+    depends_on:
+      - "redis"
+
+  pgadmin4:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=test@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=qwerty
+    ports:
+    - "8888:80"
+    depends_on:
+    - "db"

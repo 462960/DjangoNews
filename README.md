@@ -45,3 +45,35 @@ eval $(docker-machine env django-news)
 docker-compose -f docker-compose.yml -f docker-compose.prod.yml build
 docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 ```
+
+## Auth
+
+### Register
+```
+curl --request POST \
+--url http://localhost:8000/api/auth/register/ \
+--header 'content-type: application/json' \
+--data '{
+  "username": "user",
+  "password": "qwerty"
+}'
+```
+
+### Login
+```
+curl --request POST \
+  --url http://localhost:8000/api/auth/login/ \
+  --header 'content-type: application/json' \
+  --data '{
+    "username": "user",
+    "password": "qwerty"
+}'
+```
+
+### Current user
+```
+curl --request GET \
+  --url http://localhost:8000/api/auth/user/ \
+  --header 'authorization: Token YOUR_API_TOKEN_HERE' \
+  --header 'content-type: application/json' \
+```
