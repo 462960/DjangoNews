@@ -11,6 +11,7 @@ services:
     - "web"
 
   web:
+    container_name: djando_news_prod
     command: bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn news_project.wsgi -b 0.0.0.0:8000"
     depends_on:
       - "db"
