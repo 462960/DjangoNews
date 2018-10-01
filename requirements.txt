@@ -9,3 +9,9 @@ django-rest-knox==3.1.5
 idna==2.7
 pycparser==2.19
 pyOpenSSL==18.0.0
+amqp==2.3.2
+billiard==3.5.0.4
+celery==4.2.1
+kombu==4.2.1
+redis==2.10.6
+vine==1.1.4
