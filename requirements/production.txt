@@ -1,7 +1,9 @@
 Django==2.1.1
 djangorestframework==3.8.2
-gunicorn
+django-redis==4.9.0
+dj-database-url==0.5.0
 django-rest-knox==3.1.5
+gunicorn
 celery==4.2.1
 redis==2.10.6
-django-redis==4.9.0
+psycopg2-binary

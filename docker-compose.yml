@@ -1,5 +1,6 @@
 version: "3"
 services:
+
   web:
     build:
       context: .
@@ -22,6 +23,9 @@ services:
       context: .
       dockerfile: ./docker/python/Dockerfile
     command: celery -A news_project worker -l info
+    environment:
+      DATABASE_URL: "postgres://postgres@db/postgres"
+      SECRET_KEY: ${SECRET_KEY}
     depends_on:
       - "db"
       - "redis"
@@ -31,7 +35,9 @@ services:
       context: .
       dockerfile: ./docker/python/Dockerfile
     command: celery -A news_project beat -l info
-
+    environment:
+      DATABASE_URL: "postgres://postgres@db/postgres"
+      SECRET_KEY: ${SECRET_KEY}
     depends_on:
       - "db"
       - "redis"

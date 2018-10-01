@@ -1,14 +1,15 @@
 version: "3"
 services:
+
   nginx:
     build:
       context: .
       dockerfile: ./docker/nginx/Dockerfile
     container_name: djando_news_nginx
     ports:
-    - "80:80"
+      - "80:80"
     depends_on:
-    - "web"
+      - "web"
 
   web:
     container_name: djando_news_prod
@@ -17,3 +18,4 @@ services:
       - "db"
     environment:
       ALLOWED_HOSTS: "*"
+      SECRET_KEY: ${SECRET_KEY}"
