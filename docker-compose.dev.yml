@@ -22,6 +22,12 @@ services:
     volumes:
       - "./project:/app"
 
+  flower:
+    image: mher/flower
+    ports:
+    - "5555:5555"
+    command: flower --port=5555 --broker=$CELERY_BROKER_URL
+
   php-redis-admin:
     image: faktiva/php-redis-admin
     container_name: pra
@@ -41,3 +47,8 @@ services:
     - "8888:80"
     depends_on:
     - "db"
+
+  mail:
+    image: djfarrelly/maildev
+    ports:
+    - "1080:80"
