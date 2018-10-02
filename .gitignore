@@ -77,12 +77,15 @@ target/
 
 # celery beat schedule file
 celerybeat-schedule
+celerybeat.pid
 
 # SageMath parsed files
 *.sage.py
 
 # Environments
 .env
+.env.prod
+.env.dev
 .venv
 env/
 venv/
@@ -104,4 +107,4 @@ venv.bak/
 .mypy_cache/
 node_modules/
 project/frontend/static/frontend
-project/static
+project/news_project/static

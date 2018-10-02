@@ -1,5 +1,6 @@
 version: "3"
 services:
+
   web:
     build:
       context: .
@@ -7,9 +8,28 @@ services:
     container_name: djando_news
     depends_on:
       - "db"
-    environment:
-      DATABASE_URL: "postgres://postgres@db/postgres"
 
   db:
     container_name: djando_news_db
     image: "postgres:latest"
+
+  redis:
+    image: "redis:alpine"
+
+  celery:
+    build:
+      context: .
+      dockerfile: ./docker/python/Dockerfile
+    command: celery -A news_project worker -l info
+    depends_on:
+      - "db"
+      - "redis"
+
+  celery-beat:
+    build:
+      context: .
+      dockerfile: ./docker/python/Dockerfile
+    command: celery -A news_project beat -l info
+    depends_on:
+      - "db"
+      - "redis"
