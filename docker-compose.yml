@@ -8,8 +8,6 @@ services:
     container_name: djando_news
     depends_on:
       - "db"
-    environment:
-      DATABASE_URL: "postgres://postgres@db/postgres"
 
   db:
     container_name: djando_news_db
@@ -23,9 +21,6 @@ services:
       context: .
       dockerfile: ./docker/python/Dockerfile
     command: celery -A news_project worker -l info
-    environment:
-      DATABASE_URL: "postgres://postgres@db/postgres"
-      SECRET_KEY: ${SECRET_KEY}
     depends_on:
       - "db"
       - "redis"
@@ -35,9 +30,6 @@ services:
       context: .
       dockerfile: ./docker/python/Dockerfile
     command: celery -A news_project beat -l info
-    environment:
-      DATABASE_URL: "postgres://postgres@db/postgres"
-      SECRET_KEY: ${SECRET_KEY}
     depends_on:
       - "db"
       - "redis"

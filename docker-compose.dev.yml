@@ -11,22 +11,28 @@ services:
       - "./project:/app"
     ports:
       - "8000:8000"
-    environment:
-      DJANGO_SETTINGS_MODULE: news_project.settings.development
+    env_file:
+      .env.dev
 
   celery:
     volumes:
       - "./project:/app"
+    env_file:
+      .env.dev
 
   celery-beat:
     volumes:
       - "./project:/app"
+    env_file:
+      .env.dev
 
   flower:
     image: mher/flower
     ports:
     - "5555:5555"
     command: flower --port=5555 --broker=$CELERY_BROKER_URL
+    env_file:
+      .env.dev
 
   php-redis-admin:
     image: faktiva/php-redis-admin

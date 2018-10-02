@@ -29,22 +29,24 @@
     "webpack-cli": "^3.1.1"
   },
   "scripts": {
-    "up_dev": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml up",
+    "up": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml up",
     "up_prod": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml up",
+
+    "rebuild": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml build --no-cache",
 
     "build_dev": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml build",
     "build_prod": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml build",
 
-    "cov": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml exec web coverage run manage.py test",
-    "cov_rep": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml exec web coverage report",
+    "cov": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml run --rm web coverage run manage.py test",
+    "cov_rep": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml run --rm web coverage report",
 
-    "lint": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml exec web pylint authorization frontend news news_project",
+    "lint": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml run --rm web pylint authorization frontend news",
 
-    "fixture": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml exec web python ./project/manage.py loaddata news",
-    "flush": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml exec web python ./project/manage.py flush --no-input",
+    "fixture": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml exec web python manage.py loaddata news",
+    "flush": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml exec web python manage.py flush --no-input",
 
     "e2e": "cypress open --project ./project/frontend/",
     "dev": "webpack --mode development ./project/frontend/src/index.js --output ./project/frontend/static/frontend/main.js",
-    "build": "webpack --mode production ./project/frontend/src/index.js --output ./project/frontend/static/frontend/main.js"
+    "build": "webpack --mode production ./project/frontend/src/index.js --output ./project/frontend/static/frontend/main.js && docker-compose -f docker-compose.yml -f docker-compose.dev.yml exec web python manage.py collectstatic"
   }
 }

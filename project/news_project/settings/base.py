@@ -9,7 +9,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', get_random_string(50, "abcdefghijklmno
 
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOST', '')]
 
 
 # Application definition
