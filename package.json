@@ -40,13 +40,13 @@
     "cov": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml run --rm web coverage run manage.py test",
     "cov_rep": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml run --rm web coverage report",
 
-    "lint": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml run --rm web pylint authorization frontend news",
+    "lint": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml run --rm web pylint apps.authorization apps.frontend apps.news",
 
-    "fixture": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml exec web python manage.py loaddata news",
+    "fixture": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml exec web python manage.py loaddata apps.news",
     "flush": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml exec web python manage.py flush --no-input",
 
-    "e2e": "cypress open --project ./project/frontend/",
-    "dev": "webpack --mode development ./project/frontend/src/index.js --output ./project/frontend/static/frontend/main.js",
-    "build": "webpack --mode production ./project/frontend/src/index.js --output ./project/frontend/static/frontend/main.js && docker-compose -f docker-compose.yml -f docker-compose.dev.yml exec web python manage.py collectstatic"
+    "e2e": "cypress open --project ./project/apps/frontend/",
+    "dev": "webpack --mode development ./project/apps/frontend/src/index.js --output ./project/apps/frontend/static/frontend/main.js",
+    "build": "webpack --mode production ./project/apps/frontend/src/index.js --output ./project/apps/frontend/static/frontend/main.js && docker-compose -f docker-compose.yml -f docker-compose.dev.yml exec web python manage.py collectstatic"
   }
 }
