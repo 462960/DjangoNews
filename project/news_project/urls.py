@@ -17,13 +17,13 @@ from django.contrib import admin
 from django.urls import path, include
 
 api_patterns = ([
-    path('auth/', include('authorization.urls')),
+    path('auth/', include('apps.authorization.urls')),
     path('auth/', include('knox.urls')),
-    path('news/', include('news.urls')),
+    path('news/', include('apps.news.urls')),
 ], 'api')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(api_patterns)),
-    path('', include('frontend.urls')),
+    path('', include('apps.frontend.urls')),
 ]

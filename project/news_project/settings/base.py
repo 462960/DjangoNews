@@ -3,7 +3,7 @@ import dj_database_url
 from celery.schedules import crontab
 from django.utils.crypto import get_random_string
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 SECRET_KEY = os.environ.get('SECRET_KEY', get_random_string(50, "abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)"))
 
@@ -117,7 +117,7 @@ CELERY_RESULT_BACKEND = os.environ.get('CELERY_RESULT_BACKEND', 'redis://redis:6
 
 CELERY_BEAT_SCHEDULE = {
     'hello': {
-        'task': 'news.tasks.hello',
+        'task': 'apps.news.tasks.hello',
         'schedule': crontab()  # execute every minute
     }
 }
