@@ -1,0 +1,52 @@
+{
+  "name": "DjangoNews",
+  "version": "1.0.0",
+  "description": "## Install virtualenv",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shitikovkirill/DjangoNews.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shitikovkirill/DjangoNews/issues"
+  },
+  "homepage": "https://github.com/shitikovkirill/DjangoNews#readme",
+  "devDependencies": {
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.3",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "cypress": "^3.1.0",
+    "prop-types": "^15.6.2",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "weak-key": "^1.0.1",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.1"
+  },
+  "scripts": {
+    "up": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml up",
+    "up_prod": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml up",
+
+    "rebuild": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml build --no-cache",
+
+    "build_dev": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml build",
+    "build_prod": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml build",
+
+    "cov": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml run --rm web coverage run manage.py test",
+    "cov_rep": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml run --rm web coverage report",
+
+    "lint": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml run --rm web pylint authorization frontend news",
+
+    "fixture": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml exec web python manage.py loaddata news",
+    "flush": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml exec web python manage.py flush --no-input",
+
+    "e2e": "cypress open --project ./project/frontend/",
+    "dev": "webpack --mode development ./project/frontend/src/index.js --output ./project/frontend/static/frontend/main.js",
+    "build": "webpack --mode production ./project/frontend/src/index.js --output ./project/frontend/static/frontend/main.js && docker-compose -f docker-compose.yml -f docker-compose.dev.yml exec web python manage.py collectstatic"
+  }
+}
