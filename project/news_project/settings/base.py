@@ -25,9 +25,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'knox',
 
-    'authorization',
-    'news',
-    'frontend',
+    'apps.authorization',
+    'apps.news',
+    'apps.frontend',
 ]
 
 MIDDLEWARE = [
